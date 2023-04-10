@@ -1,0 +1,58 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>league-games</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+    <ion-item lines="none"  (click)="openUserList()">
+        <ion-label>Players</ion-label>
+        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+
+    <ion-card class="title_gw" *ngIf="currrent_gw_index>-1">
+        <ion-icon name="chevron-back-outline" (click)="changeGW(-1)"></ion-icon>
+        {{gws[currrent_gw_index].name}}
+        <ion-icon name="chevron-forward-outline" (click)="changeGW(1)"></ion-icon>
+    </ion-card>
+
+    <div *ngIf="games">
+
+        <div *ngFor="let item of games;let i = index" class="">
+
+
+            <div class="item" >
+                <div> {{item['game']['start_date'] | date:'hh:mm'}}</div>
+                <div class="match flex ion-justify-content-around">
+                    <div class="i1">{{item['participant'][0]['name']}}  </div>
+                    <div class="i1 flex ion-justify-content-around">
+
+                        <img style="width: 30px;height: 22px" alt="${url}" src="{{getImageName(item['participant'][0]['file_url'])}}">
+                        <span *ngIf="item['game'].status>2">{{item['participant'][0].points}}</span>
+                        <span>vs</span>
+                        <span *ngIf="item['game'].status>2">{{item['participant'][1].points}}</span>
+                        <img style="width: 30px;height: 22px" alt="${url}" src="{{getImageName(item['participant'][1]['file_url'])}}">
+
+                    </div>                    <div class="i1">{{item['participant'][1]['name']}}  </div>
+                </div>
+                <div>
+                    <ion-radio-group (ionChange)="changeChoose($event,i)" value="{{getChooseValue(item)}}" class="flex ion-justify-content-around">
+
+
+                        <div class="flex"> <span class="ion-margin-10-5">{{item['participant'][0]['coefficient']}}</span><ion-radio class="ion-margin-10-5" [disabled]="CanChanag(i)" value="{{item['participant'][0]['id']}}">1</ion-radio></div>
+                        <div class="flex"><span class="ion-margin-10-5">{{item['participant'][2]['coefficient']}}</span> <ion-radio class="ion-margin-10-5"  [disabled]="CanChanag(i)" value="x"></ion-radio></div>
+                        <div class="flex"><span class="ion-margin-10-5">{{item['participant'][1]['coefficient']}}</span><ion-radio class="ion-margin-10-5"  [disabled]="CanChanag(i)" value="{{item['participant'][1]['id']}}"></ion-radio></div>
+
+                    </ion-radio-group>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <ion-fab *ngIf="updateChoosen.length>0" vertical="bottom" horizontal="end" slot="fixed" (click)="addChoosen()">
+        <ion-fab-button color="danger"> Save</ion-fab-button>
+    </ion-fab>
+</ion-content>

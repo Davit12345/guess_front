@@ -1,0 +1,46 @@
+.find-icon {
+  margin-top: 20px;
+}
+
+
+.tabs {
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  .item {
+    border: 1px solid #c71de5;
+    padding: 10px 20px;
+    border-radius: 20px;
+  }
+}
+
+
+.players {
+  padding: 10px;
+  width: 100%;
+
+  .item {
+    width: 100%;
+
+    .username {
+      font-size: 18px;
+      color: #c71de5;
+    }
+
+    .fl-names {
+      font-size: 14px;
+      color: #e5b61d;
+    }
+
+    .points {
+      color: red;
+      font-size: 30px;
+    }
+  }
+}
+
+.active {
+  color: #e5b61d;
+  background: #c71de5;
+  border: none;
+}

@@ -1,0 +1,55 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>friends</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card>
+
+        <ion-item>
+            <ion-label position="stacked">Find Friend</ion-label>
+            <ion-input class="find" placeholder="Username or email" type="text" [value]="find" [(ngModel)]="find"
+                       (input)="findFriend($event.target)"></ion-input>
+            <ion-icon (click)="checkUser()" class="find-icon" slot="end" name="search-outline"></ion-icon>
+
+        </ion-item>
+        <ion-item *ngIf="searchUser">
+            <div *ngIf="searchUser">
+                <div>{{searchUser.user.username}}</div>
+                <div>{{searchUser.user.fname}} {{searchUser.user.lname}}</div>
+
+            </div>
+
+            <ion-icon (click)="addRequest()" *ngIf="searchUser.user && !searchUser.friend" slot="end" name="add-circle-outline"></ion-icon>
+        </ion-item>
+
+        <ion-item *ngIf="errorFind">
+            <div> Can not find any user</div>
+        </ion-item>
+    </ion-card>
+
+    <div class="tabs flex ion-justify-content-around ">
+        <div class="item" (click)="getTab('friends')" [ngClass]="type=='friends'?'active':''">Friends</div>
+        <div class="item" (click)="getTab('request')" [ngClass]="type=='request'?'active':''">Request</div>
+        <div class="item" (click)="getTab('invent')"  [ngClass]="type=='invent'?'active':''">Invent</div>
+    </div>
+
+    <ion-item-sliding class="players">
+
+        <ion-item *ngFor="let item of friendList;let i = index">
+
+            <div class="item flex ion-justify-content-between">
+                <div>
+                    <div class="username">  {{item.friend_username}}</div>
+                    <div class="fl-names">  {{item.friend_fname}}   {{item.friend_lname}}</div>
+                </div>
+            </div>
+            <ion-icon (click)="confirmFriend(item.id)" *ngIf="type=='invent'" slot="end" name="thumbs-up-outline"></ion-icon>
+        </ion-item>
+
+
+    </ion-item-sliding>
+
+</ion-content>

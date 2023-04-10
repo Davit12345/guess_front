@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>league-user-list</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item-sliding class="players">
+
+        <div class="tabs flex ion-justify-content-end">
+            <div (click)="getOrderBy('count')">count</div>
+            <div (click)="getOrderBy('point')">point</div>
+        </div>
+        <ion-item *ngFor="let item of players;let i = index">
+
+            <div class="item flex ion-justify-content-between">
+                <div class="flex">
+                    <div class="position">{{i+1}}</div>
+                    <div>
+                        <div class="username">  {{item.username}}</div>
+                        <div class="fl-names">  {{item.fname}}   {{item.lname}}</div>
+                    </div>
+                </div>
+                <div class="points flex">
+                    <div>{{item.points}} </div>
+                    <span> |</span>
+                    <div>{{item.points_coeff}} </div>
+                </div>
+            </div>
+        </ion-item>
+
+    </ion-item-sliding>
+</ion-content>

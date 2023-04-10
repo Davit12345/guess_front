@@ -1,0 +1,27 @@
+.title_gw{
+  height: 30px;
+  padding: 8px;
+  justify-content: space-between;
+  display: flex;
+}
+.item{
+  width: 90%;
+  margin: 20px  auto;
+  padding: 5px;
+  box-shadow: 0 .25em .25em -.125em rgba(232, 223, 223, 0.25), 0 .5em 1.25em rgba(234, 227, 227, 0.5);
+
+
+}
+
+.i1{
+  width: 33%;
+  text-align: center;
+}
+
+.players{
+  width: 90%;
+  margin: 20px auto;
+  height: 50px;
+  font-size: 20px;
+  padding: 15px;
+}

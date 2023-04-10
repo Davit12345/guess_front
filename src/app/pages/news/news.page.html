@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>news</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let item of news">
+    <img style="max-height: 200px;width: 100%" alt="Silhouette of mountains" src="{{getImageName(item['file_url'])}}"  />
+
+    <ion-card-header>
+      <ion-card-title>{{item.desc}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{item.text}}
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>

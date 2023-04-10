@@ -1,0 +1,111 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <div *ngIf="step==1">
+    <form  [formGroup]="ionicForm">
+
+      <ion-item>
+        <ion-label>League Name</ion-label>
+        <ion-input placeholder="Name" formControlName="name" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Start Date</ion-label>
+        <ion-datetime
+                value="{{minDate}}"
+                min="{{minDate}}"
+                max="2024-01-31T23:59:59"
+                formControlName="start_date"
+                displayFormat="YYYY-MMM-DD HH:mm">
+
+        </ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>End Date</ion-label>
+        <ion-datetime
+                value="{{minDate}}"
+                min="{{minDate}}"
+                max="2024-05-31T23:59:59"
+                formControlName="end_date"
+                displayFormat="YYYY-MMM-DD HH:mm">
+
+        </ion-datetime>
+      </ion-item>
+      <div class="flex ion-justify-content-center ion-margin-vertical">
+        <ion-button (click)="SaveLeague()" shape="round">Continue</ion-button>
+      </div>
+    </form>
+
+  </div>
+
+  <div *ngIf="step==2">
+    <ion-card class="date">
+      <ion-icon name="chevron-back-outline" (click)="changeDate(-1)"></ion-icon>
+      {{current_date| date:'yyyy-MM-dd'}}
+      <ion-icon name="chevron-forward-outline" (click)="changeDate(1)"></ion-icon>
+    </ion-card>
+    <div *ngIf="games">
+
+      <div *ngIf="leagueCount==1">
+        <div class="league flex ion-justify-content-between">
+          <div> {{games[0].game.league_name}}</div>
+          <ion-icon name="chevron-up-outline" *ngIf="!hideList.includes(games[0].game.league_id)"
+                    (click)="showHideLeague(games[0].game.league_id)"></ion-icon>
+          <ion-icon name="chevron-down-outline" *ngIf="hideList.includes(games[0].game.league_id)"
+                    (click)="showHideLeague(games[0].game.league_id)"></ion-icon>
+
+        </div>
+      </div>
+
+      <div *ngFor="let item of games;let i = index" class="">
+        <div *ngIf="leagueCount>1">
+          <div class="league flex ion-justify-content-between" *ngIf="LeagueTitle(item.game)">
+            <div> {{item.game.league_name}}</div>
+            <ion-icon name="chevron-up-outline" *ngIf="!hideList.includes(item.game.league_id)"
+                      (click)="showHideLeague(item.game.league_id)"></ion-icon>
+            <ion-icon name="chevron-down-outline" *ngIf="hideList.includes(item.game.league_id)"
+                      (click)="showHideLeague(item.game.league_id)"></ion-icon>
+
+          </div>
+        </div>
+
+        <div class="item" *ngIf="!hideList.includes(item.game.league_id)">
+
+            <div class="flex ion-justify-content-between">
+                 <div> {{item['game']['start_date'] | date:' HH:mm':''+timezone}}</div>
+                 <ion-checkbox  [checked]="chooseList.includes(item.game.id)" (ionChange)="checkForNewGame($event,item.game.id)"></ion-checkbox>
+            </div>
+            <div class="match flex ion-justify-content-around">
+            <div class="i1">       {{item['participant'][0]['name']}}  </div>
+
+            <div class="i1 flex ion-justify-content-around">
+
+              <img style="width: 30px;height: 22px" alt="${url}" src="{{getImageName(item['participant'][0]['file_url'])}}">
+              <span>vs</span>
+              <img style="width: 30px;height: 22px" alt="${url}" src="{{getImageName(item['participant'][1]['file_url'])}}">
+
+            </div>
+
+            <div class="i1">{{item['participant'][1]['name']}}    </div>
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+  <ion-fab *ngIf="step==2" vertical="bottom" horizontal="end" slot="fixed" (click)="saveLeague()">
+    <ion-fab-button color="danger"> Save</ion-fab-button>
+  </ion-fab>
+</ion-content>

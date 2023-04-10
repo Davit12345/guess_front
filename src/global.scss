@@ -1,0 +1,124 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+@import "../src/assets/css/style.css";
+
+.ion-text-center {
+  text-align: center;
+}
+
+.--ion-title-color {
+  color: var(--ion-color-danger-tint);
+}
+
+.--ion-background-color-red {
+  background: var(--ion-color-danger-tint);
+}
+
+ion-toolbar {
+  border-bottom: 1px var(--ion-color-danger-tint) solid;
+  opacity: 1;
+}
+
+ion-fab-button {
+  -–ion-color-base: white !important;
+
+
+  button {
+    background: var(--ion-color-danger-tint);
+    color: white;
+  }
+}
+
+
+.mg-t-50 {
+  margin-top: 50px;
+}
+
+.add-word .modal-wrapper {
+  height: 300px;
+  width: 90%;
+  border-radius: 30px;
+  padding: 10px;
+}
+.flex{
+  display: flex;
+}
+.flex-col{
+  display: flex;
+  flex-direction: column;
+}
+.font50{
+  font-size: 50px;
+}
+.font40{
+  font-size: 40px;
+}
+.font30{
+  font-size: 30px;
+}
+.ion-color-aqua{
+  color: aqua;
+}
+
+.info-toast{
+  --background: #f3f33e;
+  --border-radius:10px;
+  --border-style:solid;
+  --button-color:#FFDD00;
+  --color:#fff;
+}
+.error-toast{
+  --background: #f84040;
+  --border-radius:10px;
+  --border-style:solid;
+  --button-color:#FFDD00;
+  --color:#fff;
+}
+.success-toast{
+  --background: #1de51d;
+  --border-radius:10px;
+  --border-style:solid;
+  --button-color:#FFDD00;
+  --color:#fff;
+}
+.toast-button-cancel{
+  font-size: 12px;
+  --background: yellow;
+}
+
+.ion-margin-10-5{
+  margin: 10px 2.5px;
+}
+
+
+.middle-modal .modal-wrapper {
+  height: 50%;
+  width: 95%;
+  border-radius: 30px;
+  padding: 10px;
+  position: absolute;
+}

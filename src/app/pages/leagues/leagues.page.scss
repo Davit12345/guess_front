@@ -1,0 +1,11 @@
+.user_own_league {
+  position: relative;
+
+  .add-league {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 30px;
+    z-index: 10;
+  }
+}

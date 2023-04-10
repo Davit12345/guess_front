@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>profile</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item-group>
+        <ion-card *ngIf="_userData" class="">
+            <div class="profile-section flex ion-justify-content-between">
+                <div >
+                    <div>{{_userData.fname}} {{_userData.lname}} </div>
+                    <div>  {{_userData.email}}</div>
+                </div>
+
+                <div >
+                    <div>{{_userData.username}}  </div>
+                    <div class="coins">  {{_userData.coins}}</div>
+                </div>
+            </div>
+        </ion-card>
+
+        <ion-card>Settings</ion-card>
+        <ion-card (click)="goRouth('friends')">Friends</ion-card>
+
+        <ion-card class='login' (click)="logout()">Logout</ion-card>
+
+
+    </ion-item-group>
+</ion-content>

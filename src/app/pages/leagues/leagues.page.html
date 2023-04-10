@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>leagues</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card>
+        <ion-card-header>Basic Leagues</ion-card-header>
+        <ion-card-content>
+            <div  *ngFor="let item of basicLeagues;let i = index" class="">
+                <div (click)="openLeague(item)">
+                <ion-item>{{item.name}}</ion-item>
+                </div>
+            </div>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card class="user_own_league" >
+
+        <ion-icon (click)="addLeague()"  class="add-league" name="add-circle-outline"></ion-icon>
+
+        <ion-card-header>User Created Leagues</ion-card-header>
+        <ion-card-content>
+            <div  *ngFor="let item of userCreatedLeagues;let i = index" class="">
+                <div (click)="openLeague(item)">
+                <ion-item>{{item.name}}</ion-item>
+                </div>
+            </div>
+        </ion-card-content>
+
+
+    </ion-card>
+</ion-content>

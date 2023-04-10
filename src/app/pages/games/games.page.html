@@ -1,0 +1,78 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>games</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+    <ion-card class="date">
+        <ion-icon name="chevron-back-outline" (click)="changeDate(-1)"></ion-icon>
+        {{current_date| date:'yyyy-MM-dd'}}
+        <ion-icon name="chevron-forward-outline" (click)="changeDate(1)"></ion-icon>
+    </ion-card>
+
+    <div *ngIf="games">
+
+        <div *ngIf="leagueCount==1">
+            <div class="league flex ion-justify-content-between">
+                <div> {{games[0].game.league_name}}</div>
+                <ion-icon name="chevron-up-outline" *ngIf="!hideList.includes(games[0].game.league_id)"
+                          (click)="showHideLeague(games[0].game.league_id)"></ion-icon>
+                <ion-icon name="chevron-down-outline" *ngIf="hideList.includes(games[0].game.league_id)"
+                          (click)="showHideLeague(games[0].game.league_id)"></ion-icon>
+
+            </div>
+        </div>
+
+        <div *ngFor="let item of games;let i = index" class="">
+            <div *ngIf="leagueCount>1">
+                <div class="league flex ion-justify-content-between" *ngIf="LeagueTitle(item.game)">
+                    <div> {{item.game.league_name}}</div>
+                    <ion-icon name="chevron-up-outline" *ngIf="!hideList.includes(item.game.league_id)"
+                              (click)="showHideLeague(item.game.league_id)"></ion-icon>
+                    <ion-icon name="chevron-down-outline" *ngIf="hideList.includes(item.game.league_id)"
+                              (click)="showHideLeague(item.game.league_id)"></ion-icon>
+
+                </div>
+            </div>
+
+            <div class="item" *ngIf="!hideList.includes(item.game.league_id)">
+                <div> {{item['game']['start_date'] | date:' HH:mm':''+timezone}}</div>
+                <div class="match flex ion-justify-content-around">
+                    <div class="i1">       {{item['participant'][0]['name']}}  </div>
+
+                    <div class="i1 flex ion-justify-content-around">
+
+                        <img style="width: 30px;height: 22px" alt="${url}" src="{{getImageName(item['participant'][0]['file_url'])}}">
+                        <span *ngIf="item['game'].status>2">{{item['participant'][0].points}}</span>
+                        <span>vs</span>
+                        <span *ngIf="item['game'].status>2">{{item['participant'][1].points}}</span>
+                        <img style="width: 30px;height: 22px" alt="${url}" src="{{getImageName(item['participant'][1]['file_url'])}}">
+
+                    </div>
+
+                    <div class="i1">{{item['participant'][1]['name']}}    </div>
+                </div>
+                <div>
+                    <ion-radio-group (ionChange)="changeChoose($event,i)" value="{{getChooseValue(item)}}"
+                                     class="flex ion-justify-content-around">
+
+                        <div class="flex"> <span class="ion-margin-10-5">{{item['participant'][0]['coefficient']}}</span><ion-radio class="ion-margin-10-5" [disabled]="CanChanag(i)" value="{{item['participant'][0]['id']}}">1</ion-radio></div>
+                        <div class="flex"><span class="ion-margin-10-5" *ngIf="item['participant'][2]">{{item['participant'][2]['coefficient']}}</span> <ion-radio class="ion-margin-10-5"  [disabled]="CanChanag(i)" value="{{item['participant'][2]['id']}}"></ion-radio></div>
+                        <div class="flex"><span class="ion-margin-10-5">{{item['participant'][1]['coefficient']}}</span><ion-radio class="ion-margin-10-5"  [disabled]="CanChanag(i)" value="{{item['participant'][1]['id']}}"></ion-radio></div>
+
+                    </ion-radio-group>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <ion-fab *ngIf="updateChoosen.length>0" vertical="bottom" horizontal="end" slot="fixed" (click)="addChoosen()">
+        <ion-fab-button color="danger"> Save</ion-fab-button>
+    </ion-fab>
+</ion-content>
